@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/pantherun/Vivado/ff_nn/ff_nn.srcs/sources_1/new/ff_nn.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ff_nn
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/pantherun/Vivado/ff_nn/ff_nn.srcs/sim_1/new/TB_ff_nn.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TB_ff_nn
