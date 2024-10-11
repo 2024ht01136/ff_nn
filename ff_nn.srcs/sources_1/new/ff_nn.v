@@ -20,8 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ff_nn (
-    input [31:0] inputs,  // 4 inputs (8 bits each)
-    output reg [15:0] outputs   // 2 outputs (8 bits each)
+    // 4 inputs (8 bits each)
+    input [7:0] in1,
+    input [7:0] in2,
+    input [7:0] in3,
+    input [7:0] in4,
+    // 2 outputs (8 bits each)
+    output reg [7:0] out1,
+    output reg [7:0] out2
 );
 
 // Define weights and biases for hidden layer
@@ -84,10 +90,10 @@ always @(*) begin
     // Compute hidden layer activations
     for (i = 0; i < 3; i = i + 1) begin
         hidden_product_plus_bias = biases_input[i] + 
-            weights_input[i][0] * inputs[31:24] + 
-            weights_input[i][1] * inputs[23:16] +
-            weights_input[i][2] * inputs[15:8]  +
-            weights_input[i][3] * inputs[7:0];
+            weights_input[i][0] * in1 + 
+            weights_input[i][1] * in2 +
+            weights_input[i][2] * in3  +
+            weights_input[i][3] * in4;
         hidden_layer[i] = ReLU(hidden_product_plus_bias);
     end
 
@@ -98,7 +104,12 @@ always @(*) begin
             weights_output[i][1] * hidden_layer[1] +
             weights_output[i][2] * hidden_layer[2];
             
-        outputs[8*i +: 8] = output_product_plus_bias; // Store 8 bits of the output
+         // Store 8 bits of the output
+        if ( i == 0)
+            out1 = output_product_plus_bias;
+        else
+            out2 = output_product_plus_bias;
+        
     end
 end
 
