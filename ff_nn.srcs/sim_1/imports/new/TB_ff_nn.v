@@ -21,7 +21,6 @@
 
 
 module TB_ff_nn(
-
     );
     reg [7:0] in1, in2, in3, in4;
     wire [7:0] out1, out2;
